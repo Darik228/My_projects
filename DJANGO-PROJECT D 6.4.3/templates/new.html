@@ -1,0 +1,15 @@
+<!--  наследуемся от шаблона default.html, который мы создавали ещё во времена flatpages -->
+{% extends 'flatpages/default.html' %}
+{% load custom_filters %}
+
+<!-- Название у нас будет products -->
+{% block title %}
+News
+{% endblock title %}
+
+<!-- В контенте на странице мы выводим все товары -->
+{% block content %}
+<h1> {{ new.title|censor }}  </h1>
+<h2> {{time_now|date:'d M Y h:m'}}   </h2>
+<h3>  {{new.text|censor}}  </h3>
+{% endblock content %}
