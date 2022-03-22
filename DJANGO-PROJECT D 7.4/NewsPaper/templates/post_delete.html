@@ -1,0 +1,62 @@
+{% extends 'flatpages/default.html' %}
+
+{% block title %}
+Posts
+{% endblock title %}
+
+{% block content %}
+<table>
+    <thead>
+        <th>
+            Author
+        </th>
+        <th>
+            Category
+        </th>
+        <th>
+            Publication
+        </th>
+        <th>
+            Date
+        </th>
+        <th>
+            Heading
+        </th>
+        <th>
+            Text
+        </th>
+        <th>
+            Rating
+        </th>
+    </thead>
+        <tr>
+            <td>
+                {{ post.author.user |title }}
+            </td>
+            <td>
+                {% for catt in post.category.all %}
+                    {{ catt.category_name |title }}
+                {% endfor %}
+            </td>
+            <td>
+                {{ post.publication }}
+            </td>
+            <td>
+                {{ post.date_of_creation }}
+            </td>
+            <td>
+                {{ post.heading }}
+            </td>
+            <td>
+                {{ post.text }}
+            </td>
+            <td>
+                {{ post.rating }}
+            </td>
+        </tr>
+</table>
+<form method="POST">
+    {% csrf_token %}
+    <input type="submit" value="Подтвердить">
+</form>
+{% endblock content %}
