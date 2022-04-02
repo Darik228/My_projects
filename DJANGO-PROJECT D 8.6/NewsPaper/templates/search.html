@@ -1,0 +1,62 @@
+{% extends 'flatpages/default.html' %}
+
+{% block title %}
+Posts
+{% endblock title %}
+
+{% block content %}
+<form method="GET">
+        {{ filter.form.as_p }}
+        <input type="submit"/>
+</form>
+<table>
+    <thead>
+        <th>
+            Author
+        </th>
+        <th>
+            Category
+        </th>
+        <th>
+            Publication
+        </th>
+        <th>
+            Date
+        </th>
+        <th>
+            Heading
+        </th>
+        <th>
+            Text
+        </th>
+        <th>
+            Rating
+        </th>
+    </thead>
+    {% for post in filter.qs %}
+        <tr>
+            <td>
+                {{ post.author.user |title }}
+            </td>
+            <td>
+                {{ post.category.name |title }}
+            </td>
+            <td>
+                {{ post.publication }}
+            </td>
+            <td>
+                {{ post.date_of_creation }}
+            </td>
+            <td>
+                {{ post.heading }}
+            </td>
+            <td>
+                {{ post.text }}
+            </td>
+            <td>
+                {{ post.rating }}
+            </td>
+        </tr>
+    {% endfor %}
+</table>
+{% endblock content %}

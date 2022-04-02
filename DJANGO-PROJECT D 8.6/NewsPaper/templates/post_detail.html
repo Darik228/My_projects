@@ -1,0 +1,70 @@
+{% block title %}
+Posts
+{% endblock title %}
+
+{% block content %}
+<h2>Страница авторизованного пользователя {{request.user.username}}</h2>
+{% if is_not_author %}
+<button> <a href="upgrade/"> Хочу стать Автором!</a> </button>
+{% endif %}
+<table>
+    <thead>
+        <th>
+            Author
+        </th>
+        <th>
+            Category
+        </th>
+        <th>
+            Publication
+        </th>
+        <th>
+            Date
+        </th>
+        <th>
+            Heading
+        </th>
+        <th>
+            Text
+        </th>
+        <th>
+            Rating
+        </th>
+    </thead>
+        <tr>
+            <td>
+                {{ post.author.user |title }}
+            </td>
+            <td>
+                {% for catt in post.category.all %}
+                    {{ catt.category_name |title }}
+                {% endfor %}
+            </td>
+            <td>
+                {{ post.publication }}
+            </td>
+            <td>
+                {{ post.date_of_creation }}
+            </td>
+            <td>
+                {{ post.heading }}
+            </td>
+            <td>
+                {{ post.text }}
+            </td>
+            <td>
+                {{ post.rating }}
+            </td>
+        </tr>
+</table>
+<form method="POST">
+    {% csrf_token %}
+    {{ form.as_ul }}
+    <input type="submit" value="Редактировать">
+</form>
+<li class="nav-item">
+    <a class="nav-link" href="/news/">На главную</a>
+</li>
+
+<h2><button><a href="logout/">Выйти</a></button></h2>
+{% endblock content %}
