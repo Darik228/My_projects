@@ -5,6 +5,7 @@ Posts
 {% endblock title %}
 
 {% block content %}
+{% csrf_token %}
 <table>
     <thead>
         <th>
@@ -58,6 +59,9 @@ Posts
                 <a href="{% url 'post_detail' post.id %}"><u>Подробнее</u></a>
                 <a href="{% url 'post_update' post.id %}"><u>Редактировать</u></a>
                 <a href="{% url 'post_delete' post.id %}"><u>Удалить</u></a>
+                {% if is_not_author %}
+                     <a href="upgrade/"> Хочу стать Автором!</a> </button>
+                {% endif %}
             </td>
         </tr>
     {% endfor %}
